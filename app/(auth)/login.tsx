@@ -22,7 +22,6 @@ export default function LoginScreen() {
   const { login, isLoading } = useAuth();
 
   const handleLogin = async () => {
-    // Basic validation
     if (!email || !password) {
       alert('Please fill in all fields');
       return;
@@ -42,7 +41,7 @@ export default function LoginScreen() {
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.logoContainer}>
           <Image 
-            source={{ uri: 'https://images.pexels.com/photos/6169/woman-hand-car-macro.jpg?auto=compress&cs=tinysrgb&w=600' }} 
+            source={{ uri: 'https://images.pexels.com/photos/15372518/pexels-photo-15372518/free-photo-of-steering-wheel-in-renault-car.jpeg?auto=compress&cs=tinysrgb&w=600' }} 
             style={styles.logoImage} 
           />
           <Text style={styles.logoText}>RideR</Text>
@@ -110,7 +109,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     backgroundColor: COLORS.background,
     paddingHorizontal: SIZES.lg,
-    paddingTop: SIZES.xl * 2,
+    paddingTop: SIZES.xl,
     paddingBottom: SIZES.xl,
   },
   logoContainer: {

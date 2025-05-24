@@ -21,48 +21,76 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }) => {
+const api = axios.create({
+  baseURL: API_URL,
+  timeout: 5000,
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  },
+  adapter: require('axios/lib/adapters/http') 
+});
+
+export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Check for existing user on app startup
     const loadUser = async () => {
       try {
         const userString = await SecureStore.getItemAsync('user');
         if (userString) {
           setUser(JSON.parse(userString));
         }
-      } catch (error) {
-        console.error('Error loading user from storage:', error);
+      } catch (error: unknown) {
+        console.error('Error loading user:', error);
       } finally {
         setIsLoading(false);
       }
     };
-
     loadUser();
   }, []);
 
   const login = async (email: string, password: string): Promise<boolean> => {
     setIsLoading(true);
     try {
-      const response = await axios.get(`${API_URL}/users?email=${email}&password=${password}`);
+      console.log(`Attempting login to: ${API_URL}/users?email=${encodeURIComponent(email)}`);
       
-      if (response.data && response.data.length > 0) {
+      const response = await api.get(`/users?email=${encodeURIComponent(email)}`);
+      
+      if (response.data?.length > 0) {
         const userData = response.data[0];
-        // Remove password before storing
-        const { password, ...userWithoutPassword } = userData;
         
+        if (userData.password !== password) {
+          Alert.alert('Login Failed', 'Invalid password');
+          return false;
+        }
+        
+        const { password: _, ...userWithoutPassword } = userData;
         await SecureStore.setItemAsync('user', JSON.stringify(userWithoutPassword));
         setUser(userWithoutPassword);
         return true;
-      } else {
-        Alert.alert('Login Failed', 'Invalid email or password');
-        return false;
       }
-    } catch (error) {
+      
+      Alert.alert('Login Failed', 'User not found');
+      return false;
+    } catch (error: unknown) {
+      let errorMessage = 'Network Error';
+      
+      if (axios.isAxiosError(error)) {
+        if (error.code === 'ECONNABORTED') {
+          errorMessage = 'Server timeout - please try again';
+        } else if (error.response) {
+          errorMessage = `Server error: ${error.response.status}`;
+        } else if (error.request) {
+          errorMessage = 'No response from server';
+        }
+      } else if (error instanceof Error) {
+        errorMessage = error.message;
+      }
+      
       console.error('Login error:', error);
-      Alert.alert('Login Error', 'An error occurred during login');
+      Alert.alert('Login Error', errorMessage);
       return false;
     } finally {
       setIsLoading(false);
@@ -72,33 +100,30 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
   const register = async (name: string, email: string, password: string): Promise<boolean> => {
     setIsLoading(true);
     try {
-      // Check if email already exists
-      const checkResponse = await axios.get(`${API_URL}/users?email=${email}`);
+      const checkResponse = await api.get(`/users?email=${encodeURIComponent(email)}`);
       
-      if (checkResponse.data && checkResponse.data.length > 0) {
+      if (checkResponse.data?.length > 0) {
         Alert.alert('Registration Failed', 'Email already in use');
         return false;
       }
       
-      // Create new user
-      const response = await axios.post(`${API_URL}/users`, {
+      const response = await api.post('/users', {
         name,
         email,
         password
       });
       
       if (response.data) {
-        const { password, ...userWithoutPassword } = response.data;
+        const { password: _, ...userWithoutPassword } = response.data;
         await SecureStore.setItemAsync('user', JSON.stringify(userWithoutPassword));
         setUser(userWithoutPassword);
         return true;
-      } else {
-        Alert.alert('Registration Failed', 'Could not create account');
-        return false;
       }
-    } catch (error) {
+      
+      return false;
+    } catch (error: unknown) {
       console.error('Registration error:', error);
-      Alert.alert('Registration Error', 'An error occurred during registration');
+      Alert.alert('Registration Error', 'Failed to create account');
       return false;
     } finally {
       setIsLoading(false);
@@ -109,30 +134,29 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
     try {
       await SecureStore.deleteItemAsync('user');
       setUser(null);
-    } catch (error) {
+    } catch (error: unknown) {
       console.error('Logout error:', error);
     }
   };
 
   const updateUser = async (userData: Partial<User>): Promise<boolean> => {
     if (!user) return false;
-    
+
     setIsLoading(true);
     try {
-      const response = await axios.patch(`${API_URL}/users/${user.id}`, userData);
+      const response = await api.patch(`/users/${user.id}`, userData);
       
       if (response.data) {
         const updatedUser = { ...user, ...userData };
         await SecureStore.setItemAsync('user', JSON.stringify(updatedUser));
         setUser(updatedUser);
         return true;
-      } else {
-        Alert.alert('Update Failed', 'Could not update profile');
-        return false;
       }
-    } catch (error) {
-      console.error('Update user error:', error);
-      Alert.alert('Update Error', 'An error occurred while updating profile');
+      
+      return false;
+    } catch (error: unknown) {
+      console.error('Update error:', error);
+      Alert.alert('Update Error', 'Failed to update profile');
       return false;
     } finally {
       setIsLoading(false);
@@ -140,16 +164,7 @@ export const AuthProvider: React.FC<{children: React.ReactNode}> = ({ children }
   };
 
   return (
-    <AuthContext.Provider 
-      value={{ 
-        user, 
-        isLoading, 
-        login, 
-        register, 
-        logout,
-        updateUser
-      }}
-    >
+    <AuthContext.Provider value={{ user, isLoading, login, register, logout, updateUser }}>
       {children}
     </AuthContext.Provider>
   );

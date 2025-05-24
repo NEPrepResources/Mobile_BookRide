@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "bolt-expo-nativewind",
-    "slug": "bolt-expo-nativewind",
+    "name": "BookRide",
+    "slug": "BookRide",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "https://images.pexels.com/photos/15372518/pexels-photo-15372518/free-photo-of-steering-wheel-in-renault-car.jpeg?auto=compress&cs=tinysrgb&w=600",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -14,7 +14,7 @@
     "web": {
       "bundler": "metro",
       "output": "single",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "https://images.pexels.com/photos/15372518/pexels-photo-15372518/free-photo-of-steering-wheel-in-renault-car.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     "plugins": ["expo-router", "expo-font", "expo-web-browser"],
     "experiments": {
