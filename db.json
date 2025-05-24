@@ -3,56 +3,122 @@
     {
       "id": 1,
       "name": "Jane Doe",
-      "email": "jane@example.com",
-      "password": "123456"
+      "email": "janedoe87@gmail.com",
+      "password": "J@neDoe2023",
+      "phone": "+254712345678",
+      "address": "123 Moi Avenue, Nairobi"
     },
     {
       "id": 2,
       "name": "John Smith",
-      "email": "john@example.com",
-      "password": "123456"
+      "email": "john.smith@yahoo.com",
+      "password": "SmithJ0hn!",
+      "phone": "+254723456789",
+      "address": "456 Kenyatta Road, Mombasa"
+    },
+    {
+      "id": 3,
+      "name": "Alice Johnson",
+      "email": "alice.johnson@outlook.com",
+      "password": "AliceJ2024",
+      "phone": "+254734567890",
+      "address": "789 Eldoret Plaza, Eldoret"
+    },
+    {
+      "id": 4,
+      "name": "David Kimani",
+      "email": "d.kimani@hotmail.com",
+      "password": "KimaniD@123",
+      "phone": "+254745678901",
+      "address": "321 Thika Road, Thika"
+    },
+    {
+      "id": 5,
+      "name": "Sarah Wangari",
+      "email": "sarahw@gmail.com",
+      "password": "W@ngari2023",
+      "phone": "+254756789012",
+      "address": "654 Kisumu Lane, Kisumu"
     }
   ],
   "vehicles": [
     {
       "id": 1,
       "type": "Sedan",
-      "plate": "UBD 123A",
-      "driver": "John Miller",
+      "model": "Toyota Camry 2022",
+      "plate": "KDB 123A",
+      "driver": "James Mwangi",
       "status": "available",
       "image": "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=600",
-      "pricePerHour": 25,
-      "description": "Comfortable sedan with AC, leather seats, and great fuel efficiency."
+      "pricePerHour": 2500,
+      "description": "Comfortable sedan with AC, leather seats, and great fuel efficiency. Perfect for business trips.",
+      "features": ["AC", "Bluetooth", "GPS", "Airbags"],
+      "capacity": 4
     },
     {
       "id": 2,
       "type": "SUV",
-      "plate": "KJH 789B",
-      "driver": "Mary Johnson",
+      "model": "Mitsubishi Pajero 2021",
+      "plate": "KCF 789B",
+      "driver": "Mary Wambui",
       "status": "available",
       "image": "https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=600",
-      "pricePerHour": 35,
-      "description": "Spacious SUV perfect for family trips. Includes GPS and entertainment system."
+      "pricePerHour": 3500,
+      "description": "Spacious 4WD SUV perfect for family trips and off-road adventures. Includes GPS and entertainment system.",
+      "features": ["4WD", "Sunroof", "DVD Player", "Third Row Seating"],
+      "capacity": 7
     },
     {
       "id": 3,
       "type": "Pickup",
-      "plate": "TRE 456C",
-      "driver": "Robert Davis",
+      "model": "Toyota Hilux 2023",
+      "plate": "KBM 456C",
+      "driver": "Robert Ochieng",
       "status": "in use",
       "image": "https://images.pexels.com/photos/3729464/pexels-photo-3729464.jpeg?auto=compress&cs=tinysrgb&w=600",
-      "pricePerHour": 40,
-      "description": "Heavy-duty pickup truck for all your hauling needs."
+      "pricePerHour": 4000,
+      "description": "Heavy-duty double cabin pickup truck for all your hauling and construction needs.",
+      "features": ["4WD", "Towing Package", "Bed Liner", "Off-road Tires"],
+      "capacity": 5
     },
     {
       "id": 4,
       "type": "Minivan",
-      "plate": "PLO 234D",
-      "driver": "Sarah Wilson",
+      "model": "Toyota Sienna 2020",
+      "plate": "KDA 234D",
+      "driver": "Sarah Atieno",
       "status": "available",
       "image": "https://images.pexels.com/photos/1131573/pexels-photo-1131573.jpeg?auto=compress&cs=tinysrgb&w=600",
-      "pricePerHour": 30,
-      "description": "7-seater minivan with ample storage space and child safety features."
+      "pricePerHour": 3000,
+      "description": "7-seater minivan with ample storage space, sliding doors, and child safety features.",
+      "features": ["Dual AC", "Power Doors", "DVD System", "Rear Camera"],
+      "capacity": 7
+    },
+    {
+      "id": 5,
+      "type": "Luxury",
+      "model": "Mercedes S-Class 2023",
+      "plate": "KBM 789X",
+      "driver": "Paul Omollo",
+      "status": "available",
+      "image": "https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "pricePerHour": 8000,
+      "description": "Premium luxury sedan with massage seats, night vision, and premium sound system.",
+      "features": ["Panoramic Roof", "Heated Seats", "Night Vision", "Premium Sound"],
+      "capacity": 4
+    },
+    {
+      "id": 6,
+      "type": "Bus",
+      "model": "Coaster Bus 2021",
+      "plate": "KBZ 567T",
+      "driver": "Daniel Kiprop",
+      "status": "available",
+      "image": "https://images.pexels.com/photos/1839927/pexels-photo-1839927.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "pricePerHour": 6000,
+      "description": "24-seater bus ideal for group travel, corporate events, and school trips.",
+      "features": ["AC", "PA System", "Overhead Storage", "Comfort Seats"],
+      "capacity": 24
     }
   ],
   "bookings": [
@@ -61,12 +127,70 @@
       "userId": 1,
       "vehicleId": 3,
       "status": "confirmed",
-      "pickupLocation": "City Mall",
-      "dropLocation": "Airport",
-      "pickupDate": "2025-04-15",
+      "pickupLocation": "The Hub Karen",
+      "dropLocation": "Jomo Kenyatta Airport",
+      "pickupDate": "2025-06-15",
       "pickupTime": "14:00",
+      "duration": 4,
+      "totalPrice": 16000,
+      "paymentMethod": "M-Pesa",
+      "specialRequests": "Need child seat"
+    },
+    {
+      "id": 2,
+      "userId": 2,
+      "vehicleId": 5,
+      "status": "completed",
+      "pickupLocation": "Westgate Mall",
+      "dropLocation": "Windsor Golf Hotel",
+      "pickupDate": "2025-05-10",
+      "pickupTime": "08:30",
+      "duration": 3,
+      "totalPrice": 24000,
+      "paymentMethod": "Credit Card",
+      "specialRequests": "Need bottled water in the car"
+    },
+    {
+      "id": 3,
+      "userId": 3,
+      "vehicleId": 2,
+      "status": "active",
+      "pickupLocation": "Jomo Kenyatta Airport",
+      "dropLocation": "Maasai Mara National Reserve",
+      "pickupDate": "2025-06-20",
+      "pickupTime": "09:00",
+      "duration": 48,
+      "totalPrice": 168000,
+      "paymentMethod": "PayPal",
+      "specialRequests": "Need guide who knows the area"
+    },
+    {
+      "id": 4,
+      "userId": 4,
+      "vehicleId": 6,
+      "status": "confirmed",
+      "pickupLocation": "Strathmore University",
+      "dropLocation": "Lake Naivasha Resort",
+      "pickupDate": "2025-07-05",
+      "pickupTime": "06:00",
+      "duration": 24,
+      "totalPrice": 144000,
+      "paymentMethod": "Bank Transfer",
+      "specialRequests": "Need microphone for tour guide"
+    },
+    {
+      "id": 5,
+      "userId": 5,
+      "vehicleId": 1,
+      "status": "cancelled",
+      "pickupLocation": "Thika Greens",
+      "dropLocation": "Garden City Mall",
+      "pickupDate": "2025-05-01",
+      "pickupTime": "16:00",
       "duration": 2,
-      "totalPrice": 80
+      "totalPrice": 5000,
+      "paymentMethod": "M-Pesa",
+      "cancellationReason": "Changed travel plans"
     }
   ]
 }
