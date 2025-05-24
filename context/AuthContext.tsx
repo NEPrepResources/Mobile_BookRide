@@ -2,12 +2,14 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 import * as SecureStore from 'expo-secure-store';
 import axios from 'axios';
 import { API_URL } from '@/constants/api';
-import { Alert } from 'react-native';
+import { Alert, Platform } from 'react-native';
 
 interface User {
   id: number;
   name: string;
   email: string;
+  phone?: string;
+  address?: string;
 }
 
 interface AuthContextType {
@@ -21,15 +23,22 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-const api = axios.create({
-  baseURL: API_URL,
-  timeout: 5000,
-  headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  },
-  adapter: require('axios/lib/adapters/http') 
-});
+const createApiClient = () => {
+  const instance = axios.create({
+    baseURL: API_URL,
+    timeout: 3000,
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+  });
+  // if (Platform.OS !== 'web') {
+  //   instance.defaults.adapter = require('axios/lib/adapters/http');
+  // }
+  return instance;
+};
+
+const api = createApiClient();
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -43,7 +52,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           setUser(JSON.parse(userString));
         }
       } catch (error: unknown) {
-        console.error('Error loading user:', error);
+        console.error('User load error:', error);
       } finally {
         setIsLoading(false);
       }
@@ -54,7 +63,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const login = async (email: string, password: string): Promise<boolean> => {
     setIsLoading(true);
     try {
-      console.log(`Attempting login to: ${API_URL}/users?email=${encodeURIComponent(email)}`);
+      console.log(`API Request: GET ${API_URL}/users?email=${encodeURIComponent(email)}`);
       
       const response = await api.get(`/users?email=${encodeURIComponent(email)}`);
       
@@ -75,15 +84,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       Alert.alert('Login Failed', 'User not found');
       return false;
     } catch (error: unknown) {
-      let errorMessage = 'Network Error';
+      let errorMessage = 'Login failed';
       
       if (axios.isAxiosError(error)) {
         if (error.code === 'ECONNABORTED') {
-          errorMessage = 'Server timeout - please try again';
+          errorMessage = 'Request timeout - server took too long to respond';
         } else if (error.response) {
-          errorMessage = `Server error: ${error.response.status}`;
+          errorMessage = `Server responded with ${error.response.status}`;
         } else if (error.request) {
-          errorMessage = 'No response from server';
+          errorMessage = 'No response from server - check your connection';
+        } else {
+          errorMessage = 'Axios configuration error';
         }
       } else if (error instanceof Error) {
         errorMessage = error.message;
@@ -110,7 +121,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const response = await api.post('/users', {
         name,
         email,
-        password
+        password,
+        phone: '',
+        address: ''
       });
       
       if (response.data) {
@@ -120,10 +133,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         return true;
       }
       
+      Alert.alert('Registration Failed', 'Account creation failed');
       return false;
     } catch (error: unknown) {
       console.error('Registration error:', error);
-      Alert.alert('Registration Error', 'Failed to create account');
+      Alert.alert('Registration Error', 'Failed to create account. Please try again.');
       return false;
     } finally {
       setIsLoading(false);
@@ -153,10 +167,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         return true;
       }
       
+      Alert.alert('Update Failed', 'Profile update failed');
       return false;
     } catch (error: unknown) {
       console.error('Update error:', error);
-      Alert.alert('Update Error', 'Failed to update profile');
+      Alert.alert('Update Error', 'Failed to update profile. Please try again.');
       return false;
     } finally {
       setIsLoading(false);

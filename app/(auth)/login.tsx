@@ -78,6 +78,7 @@ export default function LoginScreen() {
           <TouchableOpacity 
             style={styles.button}
             onPress={handleLogin}
+            // onPress={router.replace('/(tabs)')}
             disabled={isLoading}
           >
             {isLoading ? (
