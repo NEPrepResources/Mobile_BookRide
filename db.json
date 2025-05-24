@@ -1,0 +1,72 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Jane Doe",
+      "email": "jane@example.com",
+      "password": "123456"
+    },
+    {
+      "id": 2,
+      "name": "John Smith",
+      "email": "john@example.com",
+      "password": "123456"
+    }
+  ],
+  "vehicles": [
+    {
+      "id": 1,
+      "type": "Sedan",
+      "plate": "UBD 123A",
+      "driver": "John Miller",
+      "status": "available",
+      "image": "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "pricePerHour": 25,
+      "description": "Comfortable sedan with AC, leather seats, and great fuel efficiency."
+    },
+    {
+      "id": 2,
+      "type": "SUV",
+      "plate": "KJH 789B",
+      "driver": "Mary Johnson",
+      "status": "available",
+      "image": "https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "pricePerHour": 35,
+      "description": "Spacious SUV perfect for family trips. Includes GPS and entertainment system."
+    },
+    {
+      "id": 3,
+      "type": "Pickup",
+      "plate": "TRE 456C",
+      "driver": "Robert Davis",
+      "status": "in use",
+      "image": "https://images.pexels.com/photos/3729464/pexels-photo-3729464.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "pricePerHour": 40,
+      "description": "Heavy-duty pickup truck for all your hauling needs."
+    },
+    {
+      "id": 4,
+      "type": "Minivan",
+      "plate": "PLO 234D",
+      "driver": "Sarah Wilson",
+      "status": "available",
+      "image": "https://images.pexels.com/photos/1131573/pexels-photo-1131573.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "pricePerHour": 30,
+      "description": "7-seater minivan with ample storage space and child safety features."
+    }
+  ],
+  "bookings": [
+    {
+      "id": 1,
+      "userId": 1,
+      "vehicleId": 3,
+      "status": "confirmed",
+      "pickupLocation": "City Mall",
+      "dropLocation": "Airport",
+      "pickupDate": "2025-04-15",
+      "pickupTime": "14:00",
+      "duration": 2,
+      "totalPrice": 80
+    }
+  ]
+}
