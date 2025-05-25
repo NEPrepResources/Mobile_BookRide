@@ -269,6 +269,18 @@
       "duration": 2,
       "totalPrice": 5000,
       "id": 7
+    },
+    {
+      "userId": 1,
+      "vehicleId": 6,
+      "status": "pending",
+      "pickupLocation": "cbv",
+      "dropLocation": "dfxgc",
+      "pickupDate": "2025-05-12",
+      "pickupTime": "11:20",
+      "duration": 1,
+      "totalPrice": 6000,
+      "id": 8
     }
   ]
 }
