@@ -1,5 +1,5 @@
 export const COLORS = {
-  primary: '#ffb6c1', // Light pink as requested
+  primary: '#FC4E68FF', // Light pink as requested
   primaryDark: '#ff9aa2',
   secondary: '#b5eaea', // Light blue
   secondaryDark: '#98d6ea',

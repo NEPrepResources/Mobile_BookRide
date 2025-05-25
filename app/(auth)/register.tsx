@@ -8,7 +8,8 @@ import {
   KeyboardAvoidingView,
   Platform,
   ScrollView,
-  ActivityIndicator
+  ActivityIndicator,
+  Alert
 } from 'react-native';
 import { Link, router } from 'expo-router';
 import { COLORS, FONTS, SIZES, SHADOWS } from '@/constants/theme';
@@ -23,7 +24,6 @@ export default function RegisterScreen() {
   const { register, isLoading } = useAuth();
 
   const handleRegister = async () => {
-    // Basic validation
     if (!name || !email || !password || !confirmPassword) {
       alert('Please fill in all fields');
       return;
@@ -41,7 +41,8 @@ export default function RegisterScreen() {
     
     const success = await register(name, email, password);
     if (success) {
-      router.replace('./login.tsx');
+      Alert.alert("User registered successfully")
+      router.replace('/(auth)/login')
     }
   };
 

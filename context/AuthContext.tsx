@@ -3,6 +3,7 @@ import * as SecureStore from 'expo-secure-store';
 import axios from 'axios';
 import { API_URL } from '@/constants/api';
 import { Alert, Platform } from 'react-native';
+import { router } from 'expo-router';
 
 interface User {
   id: number;
@@ -115,6 +116,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       if (checkResponse.data?.length > 0) {
         Alert.alert('Registration Failed', 'Email already in use');
+        router.replace('/(auth)/register')
         return false;
       }
       

@@ -39,6 +39,30 @@
       "password": "W@ngari2023",
       "phone": "+254756789012",
       "address": "654 Kisumu Lane, Kisumu"
+    },
+    {
+      "name": "Gisele",
+      "email": "giselemigisha53@gmail.com",
+      "password": "yezu123@A",
+      "phone": "",
+      "address": "",
+      "id": 6
+    },
+    {
+      "name": "Gisele",
+      "email": "giselemugisha@rca.ac.rw",
+      "password": "yezu123@A",
+      "phone": "",
+      "address": "",
+      "id": 7
+    },
+    {
+      "name": "Akuzwe",
+      "email": "akuzwe@yahoo.com",
+      "password": "yezu123A@",
+      "phone": "",
+      "address": "",
+      "id": 8
     }
   ],
   "vehicles": [
@@ -52,7 +76,12 @@
       "image": "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?auto=compress&cs=tinysrgb&w=600",
       "pricePerHour": 2500,
       "description": "Comfortable sedan with AC, leather seats, and great fuel efficiency. Perfect for business trips.",
-      "features": ["AC", "Bluetooth", "GPS", "Airbags"],
+      "features": [
+        "AC",
+        "Bluetooth",
+        "GPS",
+        "Airbags"
+      ],
       "capacity": 4
     },
     {
@@ -65,7 +94,12 @@
       "image": "https://images.pexels.com/photos/116675/pexels-photo-116675.jpeg?auto=compress&cs=tinysrgb&w=600",
       "pricePerHour": 3500,
       "description": "Spacious 4WD SUV perfect for family trips and off-road adventures. Includes GPS and entertainment system.",
-      "features": ["4WD", "Sunroof", "DVD Player", "Third Row Seating"],
+      "features": [
+        "4WD",
+        "Sunroof",
+        "DVD Player",
+        "Third Row Seating"
+      ],
       "capacity": 7
     },
     {
@@ -78,7 +112,12 @@
       "image": "https://images.pexels.com/photos/3729464/pexels-photo-3729464.jpeg?auto=compress&cs=tinysrgb&w=600",
       "pricePerHour": 4000,
       "description": "Heavy-duty double cabin pickup truck for all your hauling and construction needs.",
-      "features": ["4WD", "Towing Package", "Bed Liner", "Off-road Tires"],
+      "features": [
+        "4WD",
+        "Towing Package",
+        "Bed Liner",
+        "Off-road Tires"
+      ],
       "capacity": 5
     },
     {
@@ -91,7 +130,12 @@
       "image": "https://images.pexels.com/photos/1131573/pexels-photo-1131573.jpeg?auto=compress&cs=tinysrgb&w=600",
       "pricePerHour": 3000,
       "description": "7-seater minivan with ample storage space, sliding doors, and child safety features.",
-      "features": ["Dual AC", "Power Doors", "DVD System", "Rear Camera"],
+      "features": [
+        "Dual AC",
+        "Power Doors",
+        "DVD System",
+        "Rear Camera"
+      ],
       "capacity": 7
     },
     {
@@ -104,7 +148,12 @@
       "image": "https://images.pexels.com/photos/112460/pexels-photo-112460.jpeg?auto=compress&cs=tinysrgb&w=600",
       "pricePerHour": 8000,
       "description": "Premium luxury sedan with massage seats, night vision, and premium sound system.",
-      "features": ["Panoramic Roof", "Heated Seats", "Night Vision", "Premium Sound"],
+      "features": [
+        "Panoramic Roof",
+        "Heated Seats",
+        "Night Vision",
+        "Premium Sound"
+      ],
       "capacity": 4
     },
     {
@@ -114,10 +163,15 @@
       "plate": "KBZ 567T",
       "driver": "Daniel Kiprop",
       "status": "available",
-      "image": "https://images.pexels.com/photos/1839927/pexels-photo-1839927.jpeg?auto=compress&cs=tinysrgb&w=600",
+      "image": "https://images.pexels.com/photos/996954/pexels-photo-996954.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       "pricePerHour": 6000,
       "description": "24-seater bus ideal for group travel, corporate events, and school trips.",
-      "features": ["AC", "PA System", "Overhead Storage", "Comfort Seats"],
+      "features": [
+        "AC",
+        "PA System",
+        "Overhead Storage",
+        "Comfort Seats"
+      ],
       "capacity": 24
     }
   ],
@@ -191,6 +245,30 @@
       "totalPrice": 5000,
       "paymentMethod": "M-Pesa",
       "cancellationReason": "Changed travel plans"
+    },
+    {
+      "userId": 1,
+      "vehicleId": 6,
+      "status": "pending",
+      "pickupLocation": "Rwanda Coding Academy",
+      "dropLocation": "Musanze Bus station",
+      "pickupDate": "2025-05-27",
+      "pickupTime": "06:00",
+      "duration": 1,
+      "totalPrice": 6000,
+      "id": 6
+    },
+    {
+      "userId": 8,
+      "vehicleId": 1,
+      "status": "pending",
+      "pickupLocation": "ALX hub Nyarutarama",
+      "dropLocation": "Kanombe Airport",
+      "pickupDate": "2025-06-07",
+      "pickupTime": "03:00",
+      "duration": 2,
+      "totalPrice": 5000,
+      "id": 7
     }
   ]
 }
